@@ -9,13 +9,8 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product,Integer> {
-//    List<Product> findByCategory_CategoryId(Integer categoryId);
-//    @Query("SELECT p.category.categoryName FROM Product p WHERE p.productId=:productId")
-//    String findCategroyNameByProductId(int productId);
-
     List<Product> findByCategory_Id(Integer id);
 
-    //String findCategoryNameByProductId(int productId);
 }
 
 

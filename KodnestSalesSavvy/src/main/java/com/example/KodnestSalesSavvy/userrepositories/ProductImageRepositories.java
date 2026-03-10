@@ -11,10 +11,8 @@ import java.util.List;
 
 public interface ProductImageRepositories extends JpaRepository<ProductImage, Integer> {
 
-    // ✅ FIXED: Product → id
     List<ProductImage> findByProduct_Id(Integer id);
 
-    // ✅ FIXED: lowercase id (Java field name)
     @Modifying
     @Transactional
     @Query("DELETE FROM ProductImage pi WHERE pi.product.id = :id")

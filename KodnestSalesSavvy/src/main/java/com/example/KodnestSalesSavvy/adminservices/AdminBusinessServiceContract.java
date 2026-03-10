@@ -17,8 +17,4 @@ public interface AdminBusinessServiceContract {
     public Map<String,Object> calculateYearlyBusiness(int year);
     public Map<String,Object> calculateOverallBusiness();
 
-    //public Map<String,Object> calculateBusinessMetrics(List<Order> orders);
-
-    //public void AdminBusinessService(OrderRepository orderRepository, OrderItemRepository orderItemRepository, ProductRepository productRepository);
-
 }

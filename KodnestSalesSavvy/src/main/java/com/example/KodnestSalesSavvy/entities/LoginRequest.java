@@ -1,6 +1,5 @@
 package com.example.KodnestSalesSavvy.entities;
 
-//DTO TO ACCEPT REQUEST PAYLOAD IN LOGIN CONTROLLER
 public class LoginRequest {
     private String username;
     private String password;

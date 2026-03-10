@@ -27,8 +27,6 @@ public class AuthService implements AuthServiceContract {
     private final JWTTokenRepository jwtTokenRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
-
-
     @Autowired
     public AuthService(UserRepository userRepository, JWTTokenRepository jwtTokenRepository, @Value("${jwt.secret}") String jwtSecret){
         this.userRepository=userRepository;
@@ -40,7 +38,6 @@ public class AuthService implements AuthServiceContract {
         }
         this.SIGNING_KEY= Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
     }
-
     public User authenticate(String username,String password){
         User user=userRepository.findByUsername(username).orElseThrow(()-> new RuntimeException("Invalid username or password"));
         if(!passwordEncoder.matches(password,user.getPassword())){
@@ -70,21 +67,11 @@ public class AuthService implements AuthServiceContract {
                 .setExpiration(new Date(System.currentTimeMillis()+3600000)).signWith(SIGNING_KEY, SignatureAlgorithm.HS512).compact();
     }
 
-//    public void saveToken(User user, String token) {
-//        JWTToken jwtToken=new JWTToken(user,token,LocalDateTime.now().plusHours(1));
-//        jwtTokenRepository.save(jwtToken);
-//    }
-
     public void saveToken(User user, String token) {
-        JWTToken jwtToken = new JWTToken(
-                user,
-                token,
-                LocalDateTime.now(),                 // createdAt
-                LocalDateTime.now().plusHours(1)     // expiresAt
+        JWTToken jwtToken = new JWTToken(user,token,LocalDateTime.now(),LocalDateTime.now().plusHours(1)
         );
         jwtTokenRepository.save(jwtToken);
     }
-
     public boolean validateToken(String token){
         try{
             System.err.println("VALIDATING TOKEN...");

@@ -27,9 +27,6 @@ public class OrderController {
     public ResponseEntity<Map<String, Object>> getOrderForUser(HttpServletRequest request){
     try {
         User authenticatedUser=(User) request.getAttribute("authenticatedUser");
-//        if (authenticatedUser==null){
-//            return ResponseEntity.status(401).body(Map.of("error","User not authenticated"));
-//        }
         Map<String,Object> response=orderService.getOrdersForUser(authenticatedUser);
         return ResponseEntity.ok(response);
     }

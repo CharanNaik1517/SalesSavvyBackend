@@ -12,12 +12,9 @@ import java.util.Optional;
 
 @Repository
 public interface JWTTokenRepository extends JpaRepository<JWTToken,Integer> {
-//    @Query("SELECT t FROM JWTToken t WHERE t.user.userid=:userId")
-//    JWTToken findByUser_USerId(@Param("userId") int userId);
 
     @Query("SELECT t FROM JWTToken t WHERE t.user.userId = :userId")
     JWTToken findByUserId(@Param("userId") Integer userId);
-
     Optional<JWTToken> findByToken(String token);
 
     @Modifying
